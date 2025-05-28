@@ -56,7 +56,7 @@ map.current.on('click', (e) => {
 
   // Store marker in ref
   markerRef.current = newMarker;
-  console.log('Pinned at:', lng, lat);
+
   setGeometry({lng, lat})
 });
 
@@ -66,7 +66,6 @@ map.current.on('click', (e) => {
 
   return (
     <div>
-      <h2>📍 Choose your location by clicking on the map</h2>
       <div
         ref={mapContainer}
         style={{ width: '60%', height: '500px', borderRadius: '8px', margin: 'auto' }}

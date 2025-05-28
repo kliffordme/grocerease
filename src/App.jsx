@@ -3,7 +3,8 @@ import { useState } from 'react'
 import LocationPicker from './components/LocationPicker'
 import './index.css'
 import { fetchAddress } from './hooks/fetchAddress'
-import SupermarketSelector from './components/SupermarketSelector'
+import Shop from './components/Shop'
+import Header from './components/Header'
 
 function Home() {
   const [geometry, setGeometry] = useState(null)
@@ -22,11 +23,11 @@ function Home() {
 
   return (
     <div>
-      <h1>Welcome to My Map App</h1>
+      <h2 className='mx-auto flex max-w-sm my-4'>📍 Choose your location by clicking on the map</h2>
       <LocationPicker setGeometry={setGeometry} />
       <button
         onClick={handleClick}
-        className="bg-blue-600 px-4 py-2 mx-auto flex max-w-sm my-5 rounded hover:bg-blue-700"
+        className="bg-blue-600 px-4 py-2 mx-auto text-white flex max-w-sm my-5 rounded hover:bg-blue-700"
       >
         Confirm Location
       </button>
@@ -36,10 +37,14 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/select-supermarket" element={<SupermarketSelector />} />
-    </Routes>
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/select-supermarket" element={<Shop />} />
+      </Routes>
+    </div>
+
   )
 }
 
