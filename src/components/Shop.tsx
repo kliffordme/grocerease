@@ -1,5 +1,16 @@
 import { useLocation } from 'react-router-dom'
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 type LocationState = {
   address?: string;
@@ -20,6 +31,18 @@ const categories = [
   { name: "Alcohol", icon: "/alcohol.svg" },
 ];
 
+const banners = [
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+  "/hq-healthy-banner.png",
+];
+
+
 function Shop() {
   const location = useLocation();
   const state = location.state as LocationState || {};
@@ -38,6 +61,33 @@ function Shop() {
             <span className="text-sm font-medium text-center">{cat.name}</span>
           </div>
         ))}
+      </div>
+      <div className='mt-10'>
+        <Swiper
+          spaceBetween={30}
+          slidesPerView={2}             // <--- Show 2 slides at once
+          // centeredSlides={true}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          // navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+        {banners.map((src, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={src}
+              alt={`Banner ${index + 1}`}
+              className="rounded-lg w-200 h-80"
+            />
+          </SwiperSlide>
+        ))}
+        </Swiper>
       </div>
     </div>
   );
