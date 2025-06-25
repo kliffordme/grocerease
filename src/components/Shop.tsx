@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -42,6 +42,16 @@ const banners = [
   "/hq-healthy-banner.png",
 ];
 
+const malls = [
+  { name: "SM Mall of Asia", location: "Pasay" },
+  { name: "SM Megamall", location: "Mandaluyong" },
+  { name: "Glorietta", location: "Makati" },
+  { name: "Greenbelt", location: "Makati" },
+  { name: "TriNoma", location: "Quezon City" },
+  { name: "Ayala Malls Manila Bay", location: "Parañaque" },
+  { name: "Robinsons Galleria", location: "Quezon City" },
+  { name: "Uptown Mall", location: "Taguig" },
+];
 
 function Shop() {
   const location = useLocation();
@@ -50,8 +60,7 @@ function Shop() {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Shop Categories</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-8 gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 mt-4 md:grid-cols-8 gap-8">
         {categories.map((cat, index) => (
           <div
             key={index}
@@ -62,11 +71,11 @@ function Shop() {
           </div>
         ))}
       </div>
-      <div className='mt-10'>
+
+      <div className="mt-10">
         <Swiper
           spaceBetween={30}
-          slidesPerView={2}             // <--- Show 2 slides at once
-          // centeredSlides={true}
+          slidesPerView={1}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
@@ -74,20 +83,40 @@ function Shop() {
           pagination={{
             clickable: true,
           }}
-          // navigation={true}
+          breakpoints={{
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 50,
+            },
+          }}
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-        {banners.map((src, index) => (
-          <SwiperSlide key={index}>
-            <img
-              src={src}
-              alt={`Banner ${index + 1}`}
-              className="rounded-lg w-200 h-80"
-            />
-          </SwiperSlide>
-        ))}
+          {banners.map((src, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={src}
+                alt={`Banner ${index + 1}`}
+                className="w-full h-80 object-contain rounded-lg"
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
+      </div>
+
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold mb-4">All Stores</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {malls.map((mall, index) => (
+            <div
+              key={index}
+              className="border-lightblue rounded-lg p-4 shadow hover:shadow-md transition duration-300"
+            >
+              <h3 className="font-semibold text-lg">{mall.name}</h3>
+              <p className="text-gray-600">{mall.location}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
