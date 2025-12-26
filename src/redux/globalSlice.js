@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   selectedLocation: null,
-  cart: [], // 🛒 store added items here
+  cart: [], 
 };
 
 const globalSlice = createSlice({

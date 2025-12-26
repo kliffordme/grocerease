@@ -69,7 +69,7 @@ function Header() {
                         </div>
                         <button
                           className="text-red-600 text-sm"
-                          onClick={() => dispatch(removeFromCart(item.id))}
+                          onClick={() => dispatch(removeFromCart(item.name))}
                         >
                           Remove
                         </button>

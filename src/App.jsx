@@ -19,7 +19,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
-      <Footer /> {/* ✅ Add here */}
+      <Footer /> 
     </div>
   )
 }
