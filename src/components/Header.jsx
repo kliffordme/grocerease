@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectLocation, selectCart, selectCartCount, removeFromCart } from '../redux/globalSlice'
+import { selectLocation, selectCart, selectCartCount, removeFromCart, selectToast, hideToast } from '../redux/globalSlice'
 
 function Header() {
   const navigate = useNavigate()
@@ -9,11 +9,21 @@ function Header() {
   const selectedLocation = useSelector(selectLocation)
   const cart = useSelector(selectCart)
   const cartCount = useSelector(selectCartCount)
+  const toast = useSelector(selectToast)
   const [isCartOpen, setIsCartOpen] = useState(false)
 
-  console.log(cart)
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => dispatch(hideToast()), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [toast, dispatch])
 
   const city = selectedLocation?.split(',').reverse()[1]
+
+  const handleLogoClick = () => {
+    navigate('/select-supermarket')
+  }
 
   const handleClick = () => {
     navigate('/')
@@ -26,7 +36,12 @@ function Header() {
 
   return (
     <header className="bg-gray-800 text-white flex flex-col sm:flex-row items-center justify-between p-4 sm:p-6 relative">
-      <h1 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-0">🛒 GrocerEase</h1>
+      <h1 
+        className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-0 cursor-pointer hover:text-gray-300"
+        onClick={handleLogoClick}
+      >
+        🛒 GrocerEase
+      </h1>
 
       <div className="flex items-center gap-4">
         {city && (
@@ -90,6 +105,13 @@ function Header() {
           )}
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          {toast}
+        </div>
+      )}
     </header>
   )
 }

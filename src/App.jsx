@@ -6,8 +6,17 @@ import Home from './pages/Home'
 import CategoryPage from './pages/CategoryPage'
 import Footer from './components/Footer' // ✅ add this
 import Checkout from './pages/Checkout'
+import { useDispatch } from 'react-redux'
+import { loadLocation } from './redux/globalSlice'
+import { useEffect } from 'react'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadLocation())
+  }, [dispatch])
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

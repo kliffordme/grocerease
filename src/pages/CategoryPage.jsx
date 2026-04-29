@@ -1,18 +1,48 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { mallsWithItems } from "../data/mallData";
-import { addToCart } from "../redux/globalSlice";
+import { addToCart, selectCoordinates } from "../redux/globalSlice";
 
 export default function CategoryPage() {
   const { category } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const selectedCoordinates = useSelector(selectCoordinates);
 
   const readableCategory = category.replace(/-/g, " ");
 
-  const mallsWithCategory = mallsWithItems.filter(
-    (mall) => mall.categories[category] && mall.categories[category].length > 0
-  );
+  // Haversine formula to calculate distance in km
+  const calculateDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLng = (lng2 - lng1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  // Get malls with category, sorted by distance if location selected
+  const mallsWithCategory = mallsWithItems
+    .filter((mall) => mall.categories[category] && mall.categories[category].length > 0)
+    .map((mall) => ({
+      ...mall,
+      distance: selectedCoordinates
+        ? calculateDistance(
+            selectedCoordinates.lat,
+            selectedCoordinates.lng,
+            mall.lat,
+            mall.lng
+          )
+        : null,
+    }))
+    .sort((a, b) => {
+      if (selectedCoordinates) {
+        return a.distance - b.distance;
+      }
+      return a.name.localeCompare(b.name);
+    });
 
   const handleAddToCart = (item, mallName) => {
     dispatch(
@@ -48,7 +78,14 @@ export default function CategoryPage() {
             key={mall.name}
             className="border rounded-lg p-4 shadow hover:shadow-md hover:bg-gray-50 transition"
           >
-            <h2 className="text-xl font-bold mb-3">{mall.name}</h2>
+            <div className="flex justify-between items-start mb-4">
+              <h2 className="text-xl font-semibold">{mall.name}</h2>
+              {mall.distance !== null && (
+                <span className="text-sm text-gray-500">
+                  {mall.distance.toFixed(1)} km away
+                </span>
+              )}
+            </div>
 
             <ul className="space-y-3">
               {mall.categories[category].map((item, i) => (

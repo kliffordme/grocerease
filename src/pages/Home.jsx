@@ -17,7 +17,7 @@ function Home() {
     const { lng, lat } = geometry
     const address = await fetchAddress(lng, lat)
     if (address) {
-      dispatch(setLocation(address))
+      dispatch(setLocation({ address, coordinates: { lat, lng } }))
       // pass address or geometry using route state
       navigate('/select-supermarket', { state: { address, geometry } })
     }
