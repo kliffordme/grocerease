@@ -1,11 +1,10 @@
-import { Routes, Route } from 'react-router-dom'
-import './index.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Shop from './pages/Shop'
 import Header from './components/Header'
-import Home from './pages/Home'
 import CategoryPage from './pages/CategoryPage'
-import Footer from './components/Footer' // ✅ add this
+import Footer from './components/Footer'
 import Checkout from './pages/Checkout'
+import LocationModal from './components/LocationModal'
 import { useDispatch } from 'react-redux'
 import { loadLocation } from './redux/globalSlice'
 import { useEffect } from 'react'
@@ -18,17 +17,18 @@ function App() {
   }, [dispatch])
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       <main className="flex-grow">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/select-supermarket" element={<Shop />} />
-          <Route path="/:category" element={<CategoryPage />} />
+          <Route path="/" element={<Shop />} />
+          <Route path="/select-supermarket" element={<Navigate to="/" replace />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/:category" element={<CategoryPage />} />
         </Routes>
       </main>
-      <Footer /> 
+      <Footer />
+      <LocationModal />
     </div>
   )
 }

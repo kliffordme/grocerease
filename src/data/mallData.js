@@ -1,44 +1,45 @@
 export const mallsWithItems = [
   {
     name: "SM Mall of Asia",
+    area: "Pasay City",
     lat: 14.535067,
     lng: 120.982155,
     categories: {
       beverages: [
-        { name: "Coke 1.5L", price: 79 },
+        { name: "Coke 1.5L", price: 79, image: "/products/coke-1-5l.jpg" },
         { name: "Sprite 1.5L", price: 79 },
         { name: "Gatorade Blue", price: 59 },
-        { name: "Bottled Water 500ml", price: 25 }
+        { name: "Bottled Water 500ml", price: 25, image: "/products/bottled-water.jpg" }
       ],
       grocery: [
-        { name: "Rice 5kg", price: 280 },
+        { name: "Rice 5kg", price: 280, image: "/products/rice-5kg.jpg" },
         { name: "Brown Sugar 1kg", price: 45 },
         { name: "Eggs (Dozen)", price: 89 },
         { name: "Canned Tuna", price: 55 }
       ],
       pharmacy: [
-        { name: "Biogesic 10 Tablets", price: 42 },
-        { name: "Cetirizine 10mg", price: 30 },
+        { name: "Biogesic 10 Tablets", price: 42, image: "/products/biogesic.jpg" },
+        { name: "Cetirizine 10mg", price: 30, image: "/products/cetirizine.jpg" },
         { name: "Alcohol 70% 1L", price: 85 }
       ],
       pets: [
-        { name: "Dog Food (1kg)", price: 120 },
+        { name: "Dog Food (1kg)", price: 120, image: "/products/dog-food.jpg" },
         { name: "Cat Litter 5kg", price: 150 }
       ],
       appliances: [
-        { name: "Electric Fan", price: 850 },
+        { name: "Electric Fan", price: 850, image: "/products/electric-fan.jpg" },
         { name: "Rice Cooker 1L", price: 1200 }
       ],
       healthy: [
-        { name: "Organic Banana Chips", price: 95 },
+        { name: "Organic Banana Chips", price: 95, image: "/products/banana-chips.jpg" },
         { name: "Granola Bars", price: 150 }
       ],
-      "baby-kids": [
-        { name: "Pampers Medium 20s", price: 199 },
+      "baby-and-kids": [
+        { name: "Pampers Medium 20s", price: 199, image: "/products/pampers.jpg" },
         { name: "Baby Wipes 80s", price: 75 }
       ],
       alcohol: [
-        { name: "Red Wine", price: 520 },
+        { name: "Red Wine", price: 520, image: "/products/red-wine.jpg" },
         { name: "San Miguel Light (6-Pack)", price: 185 }
       ]
     }
@@ -46,6 +47,7 @@ export const mallsWithItems = [
 
   {
     name: "SM Megamall",
+    area: "Mandaluyong",
     lat: 14.584447,
     lng: 121.056770,
     categories: {
@@ -58,7 +60,7 @@ export const mallsWithItems = [
         { name: "Spaghetti Pasta 1kg", price: 88 }
       ],
       pharmacy: [
-        { name: "Paracetamol 500mg", price: 35 },
+        { name: "Paracetamol 500mg", price: 35, image: "/products/paracetamol.jpg" },
         { name: "Vitamin C 500mg", price: 120 }
       ],
       pets: [
@@ -70,7 +72,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Chia Seeds 500g", price: 140 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Bottle Set", price: 250 }
       ],
       alcohol: [
@@ -81,6 +83,7 @@ export const mallsWithItems = [
 
   {
     name: "Glorietta",
+    area: "Makati City",
     lat: 14.5507,
     lng: 121.0218,
     categories: {
@@ -89,10 +92,10 @@ export const mallsWithItems = [
       ],
       grocery: [
         { name: "Milk 1L", price: 70 },
-        { name: "Instant Noodles", price: 15 }
+        { name: "Instant Noodles", price: 15, image: "/products/instant-noodles.jpg" }
       ],
       pharmacy: [
-        { name: "Strepsils 6s", price: 39 }
+        { name: "Strepsils 6s", price: 39, image: "/products/strepsils.jpg" }
       ],
       pets: [
         { name: "Cat Food 500g", price: 65 }
@@ -103,7 +106,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Mixed Nuts", price: 120 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Powder", price: 55 }
       ],
       alcohol: []
@@ -112,6 +115,7 @@ export const mallsWithItems = [
 
   {
     name: "Greenbelt",
+    area: "Makati City",
     lat: 14.5518,
     lng: 121.0211,
     categories: {
@@ -131,7 +135,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Keto Cookies", price: 170 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Soap", price: 60 }
       ],
       alcohol: [
@@ -142,6 +146,7 @@ export const mallsWithItems = [
 
   {
     name: "TriNoma",
+    area: "Quezon City",
     lat: 14.654,
     lng: 121.0326,
     categories: {
@@ -152,7 +157,7 @@ export const mallsWithItems = [
         { name: "Cooking Oil 1L", price: 100 }
       ],
       pharmacy: [
-        { name: "Ibuprofen 200mg", price: 35 }
+        { name: "Ibuprofen 200mg", price: 35, image: "/products/ibuprofen.jpg" }
       ],
       pets: [
         { name: "Bird Seeds 250g", price: 45 }
@@ -163,7 +168,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Protein Bar", price: 110 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Shampoo", price: 65 }
       ],
       alcohol: [
@@ -174,6 +179,7 @@ export const mallsWithItems = [
 
   {
     name: "Ayala Malls Manila Bay",
+    area: "Parañaque",
     lat: 14.5233,
     lng: 120.9884,
     categories: {
@@ -184,10 +190,10 @@ export const mallsWithItems = [
         { name: "Garlic 250g", price: 40 }
       ],
       pharmacy: [
-        { name: "Band-Aid Pack", price: 30 }
+        { name: "Band-Aid Pack", price: 30, image: "/products/band-aid.jpg" }
       ],
       pets: [
-        { name: "Fish Food", price: 30 }
+        { name: "Fish Food", price: 30, image: "/products/fish-food.jpg" }
       ],
       appliances: [
         { name: "Air Fryer 3L", price: 1999 }
@@ -195,7 +201,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Gluten-Free Bread", price: 120 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Milk Formula 350g", price: 380 }
       ],
       alcohol: [
@@ -206,6 +212,7 @@ export const mallsWithItems = [
 
   {
     name: "Robinsons Galleria",
+    area: "Quezon City",
     lat: 14.586,
     lng: 121.059,
     categories: {
@@ -227,7 +234,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Oatmeal 1kg", price: 95 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Lotion", price: 80 }
       ],
       alcohol: [
@@ -238,6 +245,7 @@ export const mallsWithItems = [
 
   {
     name: "Uptown Mall",
+    area: "Bonifacio Global City",
     lat: 14.556389,
     lng: 121.054444,
     categories: {
@@ -259,7 +267,7 @@ export const mallsWithItems = [
       healthy: [
         { name: "Trail Mix", price: 140 }
       ],
-      "baby-kids": [
+      "baby-and-kids": [
         { name: "Baby Feeding Set", price: 299 }
       ],
       alcohol: [

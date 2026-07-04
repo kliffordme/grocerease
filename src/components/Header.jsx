@@ -1,7 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectLocation, selectCart, selectCartCount, removeFromCart, selectToast, hideToast } from '../redux/globalSlice'
+import {
+  selectLocation,
+  selectCart,
+  selectCartCount,
+  removeFromCart,
+  selectToast,
+  hideToast,
+  openLocationModal,
+} from '../redux/globalSlice'
 
 function Header() {
   const navigate = useNavigate()
@@ -19,82 +27,76 @@ function Header() {
     }
   }, [toast, dispatch])
 
-  const city = selectedLocation?.split(',').reverse()[1]
-
-  const handleLogoClick = () => {
-    navigate('/select-supermarket')
-  }
-
-  const handleClick = () => {
-    navigate('/')
-  }
-
-  const handleCheckout = () => {
-    navigate('/checkout')
-    setIsCartOpen(false)
-  }
+  // Extract city/municipality from the full address string
+  const city = selectedLocation?.split(',').slice(-2, -1)[0]?.trim()
 
   return (
-    <header className="bg-gray-800 text-white flex flex-col sm:flex-row items-center justify-between p-4 sm:p-6 relative">
-      <h1 
-        className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-0 cursor-pointer hover:text-gray-300"
-        onClick={handleLogoClick}
+    <header className="bg-green-700 text-white flex items-center justify-between px-4 sm:px-6 py-3 shadow-md">
+      {/* Logo */}
+      <button
+        onClick={() => navigate('/')}
+        className="text-xl font-bold tracking-tight hover:opacity-80 transition"
       >
-        🛒 GrocerEase
-      </h1>
+        GrocerEase
+      </button>
 
-      <div className="flex items-center gap-4">
-        {city && (
-          <div 
-            className="flex items-center hover:bg-sky-700 cursor-pointer rounded px-4 py-2"
-            onClick={handleClick}
-          >
-            <img src="/pin.svg" alt="Pin" className="w-6 h-6 sm:w-7 sm:h-8 mr-2" />
-            <span className="text-sm sm:text-base truncate">{city}</span>
-          </div>
-        )}
+      <div className="flex items-center gap-2">
+        {/* Location pill */}
+        <button
+          onClick={() => dispatch(openLocationModal())}
+          className="flex items-center gap-1.5 text-sm bg-green-600 hover:bg-green-500 rounded-lg px-3 py-1.5 transition"
+        >
+          <img src="/pin.svg" alt="" className="w-4 h-4 shrink-0" />
+          <span className="truncate max-w-[120px]">{city || 'Set location'}</span>
+        </button>
 
-        {/* 🛍️ Cart */}
+        {/* Cart */}
         <div className="relative">
           <button
-            className="relative flex items-center hover:bg-gray-700 px-3 py-2 rounded"
             onClick={() => setIsCartOpen(!isCartOpen)}
+            className="relative flex items-center bg-green-600 hover:bg-green-500 rounded-lg px-3 py-1.5 transition"
+            aria-label="Open cart"
           >
-            <img src="/basket.svg" alt="Cart" className="w-6 h-6" />
+            <img src="/basket.svg" alt="Cart" className="w-5 h-5" />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold rounded-full px-2">
+              <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {cartCount}
               </span>
             )}
           </button>
 
-          {/* Dropdown */}
+          {/* Cart dropdown */}
           {isCartOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white text-gray-900 shadow-lg rounded-lg overflow-hidden z-50">
+            <div className="absolute right-0 mt-2 w-72 bg-white text-gray-800 rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50">
               {cart.length === 0 ? (
-                <div className="p-4 text-sm text-gray-500">Your cart is empty</div>
+                <p className="p-5 text-sm text-gray-500 text-center">Your cart is empty</p>
               ) : (
                 <>
-                  <ul className="max-h-60 overflow-y-auto divide-y divide-gray-200">
+                  <ul className="max-h-64 overflow-y-auto divide-y divide-gray-100">
                     {cart.map((item) => (
-                      <li key={item.id} className="p-3 flex justify-between items-center">
-                        <div>
-                          <p className="font-semibold text-sm">{item.name}</p>
-                          <p className="text-xs text-gray-500">x{item.quantity}</p>
+                      <li
+                        key={item.name}
+                        className="flex items-start justify-between gap-2 px-4 py-3"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-sm truncate">{item.name}</p>
+                          <p className="text-xs text-gray-400">
+                            ×{item.quantity} — ₱{(item.price * item.quantity).toLocaleString()}
+                          </p>
                         </div>
                         <button
-                          className="text-red-600 text-sm"
                           onClick={() => dispatch(removeFromCart(item.name))}
+                          className="text-xs text-red-500 hover:text-red-700 shrink-0 mt-0.5 transition"
                         >
                           Remove
                         </button>
                       </li>
                     ))}
                   </ul>
-                  <div className="p-3 border-t border-gray-200">
+                  <div className="px-4 py-3 border-t border-gray-100">
                     <button
-                      className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
-                      onClick={handleCheckout}
+                      onClick={() => { navigate('/checkout'); setIsCartOpen(false); }}
+                      className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-sm font-medium transition"
                     >
                       Proceed to Checkout
                     </button>
@@ -106,9 +108,9 @@ function Header() {
         </div>
       </div>
 
-      {/* Toast Notification */}
+      {/* Toast notification */}
       {toast && (
-        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+        <div className="fixed bottom-4 right-4 bg-green-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl shadow-lg z-50">
           {toast}
         </div>
       )}

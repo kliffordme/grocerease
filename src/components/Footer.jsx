@@ -2,11 +2,11 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-6 mt-8 border-t border-gray-700 flex justify-center items-center">
-      <p className="text-sm text-center">
-        © {new Date().getFullYear()}{" "}
-        <span className="font-semibold text-white">GrocerEase</span>. All rights reserved.
-      </p>
+    <footer className="bg-gray-900 text-gray-400 py-5 mt-auto">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-1 text-sm">
+        <span className="font-semibold text-white">GrocerEase</span>
+        <span>© {new Date().getFullYear()} GrocerEase. All rights reserved.</span>
+      </div>
     </footer>
   );
 }

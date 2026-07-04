@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   selectedLocation: null,
   selectedCoordinates: null,
-  cart: [], 
+  cart: [],
   toast: null,
+  isLocationModalOpen: false,
 };
 
 const globalSlice = createSlice({
@@ -49,6 +50,12 @@ const globalSlice = createSlice({
     hideToast: (state) => {
       state.toast = null;
     },
+    openLocationModal: (state) => {
+      state.isLocationModalOpen = true;
+    },
+    closeLocationModal: (state) => {
+      state.isLocationModalOpen = false;
+    },
     loadLocation: (state) => {
       const saved = localStorage.getItem('grocerease_location');
       if (saved) {
@@ -60,7 +67,7 @@ const globalSlice = createSlice({
   },
 });
 
-export const { setLocation, addToCart, removeFromCart, clearCart, showToast, hideToast, loadLocation } = globalSlice.actions;
+export const { setLocation, addToCart, removeFromCart, clearCart, showToast, hideToast, openLocationModal, closeLocationModal, loadLocation } = globalSlice.actions;
 
 export default globalSlice.reducer;
 
@@ -70,3 +77,4 @@ export const selectCoordinates = (state) => state.global.selectedCoordinates;
 export const selectCart = (state) => state.global.cart;
 export const selectCartCount = (state) => state.global.cart.reduce((sum, item) => sum + item.quantity, 0);
 export const selectToast = (state) => state.global.toast;
+export const selectLocationModalOpen = (state) => state.global.isLocationModalOpen;

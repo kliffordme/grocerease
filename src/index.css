@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+/* Give every interactive element a pointer cursor (Tailwind's preflight doesn't).
+   Disabled controls keep the not-allowed cursor. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  a[href],
+  label[for],
+  summary,
+  select {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
