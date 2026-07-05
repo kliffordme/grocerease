@@ -6,40 +6,40 @@ export const mallsWithItems = [
     lng: 120.982155,
     categories: {
       beverages: [
-        { name: "Coke 1.5L", price: 79, image: "/products/coke-1-5l.jpg" },
+        { name: "Coke 1.5L", price: 79, image: "/coke.webp" },
         { name: "Sprite 1.5L", price: 79 },
         { name: "Gatorade Blue", price: 59 },
-        { name: "Bottled Water 500ml", price: 25, image: "/products/bottled-water.jpg" }
+        { name: "Bottled Water 500ml", price: 25, image: "/bottled-water.png" }
       ],
       grocery: [
-        { name: "Rice 5kg", price: 280, image: "/products/rice-5kg.jpg" },
+        { name: "Rice 5kg", price: 280, image: "/rice.webp" },
         { name: "Brown Sugar 1kg", price: 45 },
         { name: "Eggs (Dozen)", price: 89 },
         { name: "Canned Tuna", price: 55 }
       ],
       pharmacy: [
-        { name: "Biogesic 10 Tablets", price: 42, image: "/products/biogesic.jpg" },
-        { name: "Cetirizine 10mg", price: 30, image: "/products/cetirizine.jpg" },
+        { name: "Biogesic 10 Tablets", price: 42, image: "/paracetamol.png" },
+        { name: "Cetirizine 10mg", price: 30, image: "/cetirizine.webp" },
         { name: "Alcohol 70% 1L", price: 85 }
       ],
       pets: [
-        { name: "Dog Food (1kg)", price: 120, image: "/products/dog-food.jpg" },
+        { name: "Dog Food (1kg)", price: 120, image: "/dog-food.webp" },
         { name: "Cat Litter 5kg", price: 150 }
       ],
       appliances: [
-        { name: "Electric Fan", price: 850, image: "/products/electric-fan.jpg" },
+        { name: "Electric Fan", price: 850, image: "/e-fan.png" },
         { name: "Rice Cooker 1L", price: 1200 }
       ],
       healthy: [
-        { name: "Organic Banana Chips", price: 95, image: "/products/banana-chips.jpg" },
+        { name: "Organic Banana Chips", price: 95, image: "/banana-chips.webp" },
         { name: "Granola Bars", price: 150 }
       ],
       "baby-and-kids": [
-        { name: "Pampers Medium 20s", price: 199, image: "/products/pampers.jpg" },
+        { name: "Pampers Medium 20s", price: 199, image: "/diapers.webp" },
         { name: "Baby Wipes 80s", price: 75 }
       ],
       alcohol: [
-        { name: "Red Wine", price: 520, image: "/products/red-wine.jpg" },
+        { name: "Red Wine", price: 520, image: "/red-wine.png" },
         { name: "San Miguel Light (6-Pack)", price: 185 }
       ]
     }
@@ -60,7 +60,7 @@ export const mallsWithItems = [
         { name: "Spaghetti Pasta 1kg", price: 88 }
       ],
       pharmacy: [
-        { name: "Paracetamol 500mg", price: 35, image: "/products/paracetamol.jpg" },
+        { name: "Paracetamol 500mg", price: 35, image: "/paracetamol.webp" },
         { name: "Vitamin C 500mg", price: 120 }
       ],
       pets: [
@@ -92,10 +92,10 @@ export const mallsWithItems = [
       ],
       grocery: [
         { name: "Milk 1L", price: 70 },
-        { name: "Instant Noodles", price: 15, image: "/products/instant-noodles.jpg" }
+        { name: "Instant Noodles", price: 15, image: "/noodles.png" }
       ],
       pharmacy: [
-        { name: "Strepsils 6s", price: 39, image: "/products/strepsils.jpg" }
+        { name: "Strepsils 6s", price: 39, image: "/strepsils.webp" }
       ],
       pets: [
         { name: "Cat Food 500g", price: 65 }
@@ -157,7 +157,7 @@ export const mallsWithItems = [
         { name: "Cooking Oil 1L", price: 100 }
       ],
       pharmacy: [
-        { name: "Ibuprofen 200mg", price: 35, image: "/products/ibuprofen.jpg" }
+        { name: "Ibuprofen 200mg", price: 35, image: "/ibuprofen.png" }
       ],
       pets: [
         { name: "Bird Seeds 250g", price: 45 }
@@ -190,10 +190,10 @@ export const mallsWithItems = [
         { name: "Garlic 250g", price: 40 }
       ],
       pharmacy: [
-        { name: "Band-Aid Pack", price: 30, image: "/products/band-aid.jpg" }
+        { name: "Band-Aid Pack", price: 30, image: "/band-aid.webp" }
       ],
       pets: [
-        { name: "Fish Food", price: 30, image: "/products/fish-food.jpg" }
+        { name: "Fish Food", price: 30, image: "/fish-food.webp" }
       ],
       appliances: [
         { name: "Air Fryer 3L", price: 1999 }

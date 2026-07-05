@@ -64,12 +64,20 @@ export default function CategoryPage() {
               <ul className="divide-y divide-gray-100">
                 {mall.categories[category].map((item, i) => (
                   <li key={i} className="flex items-center gap-4 px-5 py-3">
-                    <div className={`flex items-center justify-center w-12 h-12 rounded-lg shrink-0 ${categoryTint(category)}`}>
-                      <img
-                        src={productIcon(item.name, category)}
-                        alt=""
-                        className="w-7 h-7"
-                      />
+                    <div className={`flex items-center justify-center w-12 h-12 rounded-lg shrink-0 overflow-hidden ${categoryTint(category)}`}>
+                      {item.image ? (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-contain p-1"
+                        />
+                      ) : (
+                        <img
+                          src={productIcon(item.name, category)}
+                          alt=""
+                          className="w-7 h-7"
+                        />
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-sm text-gray-800">{item.name}</p>

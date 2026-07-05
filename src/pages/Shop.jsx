@@ -81,13 +81,21 @@ function ProductCard({ item, onAdd, onOpenCategory }) {
     <div className="flex flex-col bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-md hover:border-green-400 transition duration-200">
       <button
         onClick={onOpenCategory}
-        className={`flex items-center justify-center rounded-lg h-40 mb-3 ${categoryTint(item.category)}`}
+        className={`flex items-center justify-center rounded-lg h-40 mb-3 overflow-hidden ${categoryTint(item.category)}`}
       >
-        <img
-          src={productIcon(item.name, item.category)}
-          alt=""
-          className="w-20 h-20 drop-shadow-sm"
-        />
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-contain p-3"
+          />
+        ) : (
+          <img
+            src={productIcon(item.name, item.category)}
+            alt=""
+            className="w-20 h-20 drop-shadow-sm"
+          />
+        )}
       </button>
       <p className="font-medium text-sm text-gray-800 leading-snug">{item.name}</p>
       <p className="text-xs text-gray-400 mt-0.5 truncate">{item.mall}</p>
